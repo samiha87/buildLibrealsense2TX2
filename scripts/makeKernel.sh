@@ -3,7 +3,10 @@
 # Assumes that the .config file is available in /proc/config.gz
 # Added check to see if make builds correctly; retry once if not
 
-cd /media/reski/Reski/kernel/kernel-4.9
+if [ $1 == "-p"]; then
+	BUILD_PATH=$2
+fi
+cd "$BUIL_PATH/kernel/kernel-4.9"
 make prepare
 make modules_prepare
 # Get the number of CPUs 

@@ -109,20 +109,22 @@ if [ $KERNEL_BUILD_VERSION = "master" ] ; then
 fi
 
 # Is librealsense on the device?
-echo "Clone librealsense"
-if [ ! -d "$BUILD_PATH" ] ; then
+echo "Clone librealsense to $BUILD_PATH"
+if [ ! -d "$BUILD_PATH/librealsense" ] ; then
    echo "The librealsense repository directory is not available"
    read -p "Would you like to git clone librealsense? (y/n) " answer
    case ${answer:0:1} in
      y|Y )
          # clone librealsense
          #cd ${HOME}
-         cd $BUILD_PATH
+	 echo "Jumping to $BUILD_PATH"
+         cd "$BUILD_PATH"
 	 echo "${green}Cloning librealsense${reset}"
-         if [[ -f librealsense ]]
-	 then
+         if [ -d "librealsense" ]; then
+		echo "remove librealsense"
 	 	sudo rm -r librealsense
 	 fi
+	 echo "$BUILD_PATH"
 	 git init
 	 git clone https://github.com/IntelRealSense/librealsense.git
          cd librealsense
@@ -137,7 +139,7 @@ if [ ! -d "$BUILD_PATH" ] ; then
 fi
 echo "Is the version of librealsense current enough"
 # Is the version of librealsense current enough?
-cd $BUILD_PATH
+cd "$BUILD_PATH/librealsense"
 VERSION_TAG=$(git tag -l $LIBREALSENSE_VERSION)
 if [ ! $VERSION_TAG  ] ; then
    echo ""
@@ -157,15 +159,15 @@ fi
 cd $INSTALL_DIR
 # Get the kernel sources; does not open up editor on .config file
 echo "${green}Getting Kernel sources${reset}"
-sudo ./scripts/getKernelSourcesNoGUI.sh
+sudo ./scripts/getKernelSourcesNoGUI.sh -p "$BUILD_PATH"
 
 echo "${green}Patching and configuring kernel${reset}"
-sudo ./scripts/configureKernel.sh
-sudo ./scripts/patchKernel.sh
+sudo ./scripts/configureKernel.sh -p "$BUILD_PATH"
+sudo ./scripts/patchKernel.sh -p "$BUILD_PATH"
 
 # Make the new Image and build the modules
 echo "${green}Building Kernel and Modules then installing Modules${reset}"
-sudo ./scripts/makeKernel.sh
+sudo ./scripts/makeKernel.sh -p "$BUILD_PATH"
 
 # On the stock Jetson TX2 install, there is no zImage in the boot directory
 # So we just copy the Image file over

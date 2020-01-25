@@ -2,13 +2,17 @@
 # Install the Intel Realsense library kernel patches on a NVIDIA Jetson TX2 Developer Kit
 # MIT License
 
+if [ $1 == "-p"]; then
+	BUILD_PATH=$2
+fi
+
 set -e
 
 INSTALL_DIR=$PWD
 module_dir=$PWD/modules
 echo $module_dir
 
-cd /media/reski/Reski/librealsense
+cd "$BUILD_PATH/librealsense"
 LIBREALSENSE_DIR=$PWD
 kernel_branch="master"
 echo "kernel branch" $kernel_branch
@@ -21,7 +25,7 @@ kernel_name="kernel-4.9"
 # For L4T 32.1.0, the kernel is 4.9
 # Therefore we have to do a little dance; patches are modified versions of xenial 4.4 and 4.8 kernel patches
 
-cd /media/reski/Reski/kernel/kernel-4.9
+cd "$BUILD_PATH/kernel/kernel-4.9"
 
 # ubuntu_codename=`. /etc/os-release; echo ${UBUNTU_CODENAME/*, /}`
 # ubuntu_codename is xenial for L4T 28.X (Ubuntu 16.04)
