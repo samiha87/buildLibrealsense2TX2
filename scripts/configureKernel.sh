@@ -4,7 +4,8 @@
 # For L4T 31.1.0 the kernel is 4.9.109 hence kernel-4.9
 echo "Configuring Kernel for librealsense"
 
-cd /usr/src/kernel/kernel-4.9
+#cd /usr/src/kernel/kernel-4.9
+cd /media/reski/Reski/kernel/kernel-4.9
 echo "Current working directory: "$PWD
 KERNEL_VERSION=$(uname -r)
 # For L4T 32.1.0 the kernel is 4.9.140-tegra ; everything after that is the local version

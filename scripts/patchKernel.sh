@@ -8,7 +8,7 @@ INSTALL_DIR=$PWD
 module_dir=$PWD/modules
 echo $module_dir
 
-cd ${HOME}/librealsense
+cd /media/reski/Reski/librealsense
 LIBREALSENSE_DIR=$PWD
 kernel_branch="master"
 echo "kernel branch" $kernel_branch
@@ -21,7 +21,7 @@ kernel_name="kernel-4.9"
 # For L4T 32.1.0, the kernel is 4.9
 # Therefore we have to do a little dance; patches are modified versions of xenial 4.4 and 4.8 kernel patches
 
-cd /usr/src/kernel/kernel-4.9
+cd /media/reski/Reski/kernel/kernel-4.9
 
 # ubuntu_codename=`. /etc/os-release; echo ${UBUNTU_CODENAME/*, /}`
 # ubuntu_codename is xenial for L4T 28.X (Ubuntu 16.04)

@@ -234,7 +234,7 @@ index 426fb245125a..e81e9cd53295 100644
  /* Maximum number of packets per URB. */
  #define UVC_MAX_PACKETS		32
  /* Maximum status buffer size in bytes of interrupt URB. */
--#define UVC_MAX_STATUS_SIZE	16
+-#define UVC_MAX_STATUS_SIZE	1024
 +#define UVC_MAX_STATUS_SIZE	32
  
  #define UVC_CTRL_CONTROL_TIMEOUT	500
