@@ -2,7 +2,6 @@
 # Patch the kernel for the Intel Realsense library librealsense on a Jetson TX2 Developer Kit
 # MIT License
 
-LIBREALSENSE_DIRECTORY=/media/reski/Reski/librealsense
 LIBREALSENSE_VERSION=v2.22.0
 
 
@@ -20,8 +19,9 @@ while [ "$1" != "" ]; do
         -h | --help )           usage
                                 exit
                                 ;;
-        * )                     usage
-                                exit 1
+	-p | --path )		BUILD_PATH=$2
+				echo "BUILD_PATH=$BUILD_PATH"
+				;;
     esac
     shift
 done
@@ -49,6 +49,7 @@ set -e
 # The KERNEL_BUILD_VERSION is the release tag for the JetsonHacks buildKernel repository
 KERNEL_BUILD_VERSION=master
 # Quotes around Jetson Board because the name may have a space, ie "AGX Xavier"
+echo "Check Jetson type TX2"
 if [ $JETSON_BOARD == "TX2" ] ; then
 L4TTarget="32.3.1"
   # Test for 28.2.1 first
@@ -72,7 +73,7 @@ L4TTarget="32.3.1"
   fi
 fi
 
-
+echo "Check Jetson type AGX Xavier"
 if [ "$JETSON_BOARD" == "AGX Xavier" ] ; then 
   L4TTarget="31.1.0"
   # Test for 31.1.0 first
@@ -94,6 +95,7 @@ if [ "$JETSON_BOARD" == "AGX Xavier" ] ; then
   fi
 fi
 
+echo "Check Kernel build version"
 # If we didn't find a correctly configured TX2 or TX1 exit, we don't know what to do
 if [ $KERNEL_BUILD_VERSION = "master" ] ; then
    tput setaf 1
@@ -107,17 +109,22 @@ if [ $KERNEL_BUILD_VERSION = "master" ] ; then
 fi
 
 # Is librealsense on the device?
-
-if [ ! -d "$LIBREALSENSE_DIRECTORY" ] ; then
+echo "Clone librealsense"
+if [ ! -d "$BUILD_PATH" ] ; then
    echo "The librealsense repository directory is not available"
    read -p "Would you like to git clone librealsense? (y/n) " answer
    case ${answer:0:1} in
      y|Y )
          # clone librealsense
          #cd ${HOME}
-         cd /media/reski/Reski/
+         cd $BUILD_PATH
 	 echo "${green}Cloning librealsense${reset}"
-         git clone https://github.com/IntelRealSense/librealsense.git
+         if [[ -f librealsense ]]
+	 then
+	 	sudo rm -r librealsense
+	 fi
+	 git init
+	 git clone https://github.com/IntelRealSense/librealsense.git
          cd librealsense
          # Checkout version the last tested version of librealsense
          git checkout $LIBREALSENSE_VERSION
@@ -128,9 +135,9 @@ if [ ! -d "$LIBREALSENSE_DIRECTORY" ] ; then
      ;;
    esac
 fi
-
+echo "Is the version of librealsense current enough"
 # Is the version of librealsense current enough?
-cd $LIBREALSENSE_DIRECTORY
+cd $BUILD_PATH
 VERSION_TAG=$(git tag -l $LIBREALSENSE_VERSION)
 if [ ! $VERSION_TAG  ] ; then
    echo ""
