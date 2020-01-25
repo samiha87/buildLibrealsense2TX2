@@ -2,7 +2,7 @@
 # Install the Intel Realsense library kernel patches on a NVIDIA Jetson TX2 Developer Kit
 # MIT License
 
-if [ $1 == "-p"]; then
+if [ $1 == "-p" ]; then
 	BUILD_PATH=$2
 fi
 

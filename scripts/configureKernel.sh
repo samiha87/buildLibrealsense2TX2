@@ -2,9 +2,7 @@
 # Configure the kernel for the Intel Realsense library on a TX2 Developer Kit
 
 # For L4T 31.1.0 the kernel is 4.9.109 hence kernel-4.9
-echo "Configuring Kernel for librealsense"
-
-if [ $1 == "-p"]; then
+if [ $1 == "-p" ]; then
 	BUILD_PATH=$2
 fi
 
