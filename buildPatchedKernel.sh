@@ -184,6 +184,6 @@ echo "${green}Please copy the new kernel Image file cover to the Image file on t
 echo "${green}The new kernel Image is in the directory named 'image'.${reset}"
 
 mkdir -p image
-cp /usr/src/kernel/kernel-4.9/arch/arm64/boot/Image ./image/Image
+cp "$BUILD_PATH/kernel/kernel-4.9/arch/arm64/boot/Image" ./image/Image
 
 
