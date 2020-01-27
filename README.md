@@ -1,6 +1,8 @@
 # Modified.
 Installation done with NVIDIA Jetson TX2. 
-To allow more space uninstalled Desktop
+To allow more space purged Desktop from ubuntu.
+Installation need to be done from get go. If buildLibrealsense has been runned, new image installed to boot and installLibrealsense done succesfully there is no more space left. If needed to install again, you most probably need to reflash the jetson.
+
 # ----------------------------Original---------
 # buildLibrealsense2TX2
 Build librealsense 2.0 library on the NVIDIA Jetson TX2 Developer Kit. Intel RealSense D400 series cameras.
