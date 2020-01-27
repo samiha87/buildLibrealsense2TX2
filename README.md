@@ -1,7 +1,13 @@
 # Modification
-Installation done with NVIDIA Jetson TX2. 
-To allow more space purged Desktop from ubuntu.
-Installation need to be done from get go. If buildLibrealsense has been completed, new image installed to boot and installLibrealsense done succesfully there is no more space left. If needed to install again, you most probably need to reflash the jetson and start from beginning.
+Installation succesfull with NVIDIA Jetson TX2 4GB. Not tested running example programs for realsense
+
+## Installation process
+To allow more space purged Desktop from ubuntu.Installation need to be done from get go. If buildLibrealsense has been completed, new image installed to boot and installLibrealsense done succesfully there is no more space left. If needed to install again, you most probably need to reflash the jetson and start from beginning.
+
+Installing librealsense required modifying CMAKE files for cuda compiler. Script version has cuda old version and Jetpack 4.3 has 10.0.
+Adding correct path to cuda compiler cmake 
+-SET(CMAKE_CUDA_COMPILER_ENV_VAR /usr/local/cuda-8.0/bin)
+-SET(CMAKE_CUDA_COMPILER /usr/local/cuda-8.0/bin)
 
 # ----------------------------Original---------
 # buildLibrealsense2TX2
