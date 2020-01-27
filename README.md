@@ -1,6 +1,6 @@
 # Modified.
 Installation done with NVIDIA Jetson TX2. 
-#----------------------------Original----------------------------------------------------------------------------------------------
+#----------------------------Original---------
 # buildLibrealsense2TX2
 Build librealsense 2.0 library on the NVIDIA Jetson TX2 Developer Kit. Intel RealSense D400 series cameras.
 
