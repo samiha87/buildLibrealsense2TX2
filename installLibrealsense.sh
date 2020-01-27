@@ -1,7 +1,11 @@
 #!/bin/bash
 # Builds the Intel Realsense library librealsense2 on a Jetson TX2 Developer Kit
 
-LIBREALSENSE_DIRECTORY=${HOME}/librealsense
+if [ $1 == "-p" ]; then
+	BUILD_DIR=$2
+fi
+
+LIBREALSENSE_DIRECTORY="$BUILD_DIR/librealsense"
 LIBREALSENSE_VERSION=v2.22.0
 INSTALL_DIR=$PWD
 
@@ -19,8 +23,6 @@ while [ "$1" != "" ]; do
         -h | --help )           usage
                                 exit
                                 ;;
-        * )                     usage
-                                exit 1
     esac
     shift
 done
@@ -39,7 +41,7 @@ echo ""
 
 if [ ! -d "$LIBREALSENSE_DIRECTORY" ] ; then
   # clone librealsense
-  cd ${HOME}
+  cd $BUILD_DIR
   echo "${green}Cloning librealsense${reset}"
   git clone https://github.com/IntelRealSense/librealsense.git
 fi
@@ -82,6 +84,11 @@ echo "${green}Applying Incomplete Frames Patch${reset}"
 
 echo "${green}Applying udev rules${reset}"
 # Copy over the udev rules so that camera can be run from user space
+cd $INSTALL_DIR
+echo $INSTALL_DIR
+cp patches/cmake/cuda_config.cmake "$LIBREALSENSE_DIRECTORY/CMake/cuda_config.cmake"
+
+cd $LIBREALSENSE_DIRECTORY
 sudo cp config/99-realsense-libusb.rules /etc/udev/rules.d/
 sudo udevadm control --reload-rules && udevadm trigger
 
@@ -91,8 +98,10 @@ cd build
 # Build examples, including graphical ones
 echo "${green}Configuring Make system${reset}"
 # Use the CMake version that we built, must be > 3.8
+# Patch the cmake file
+#cp /patche
 # Build with CUDA (default), the CUDA flag is USE_CUDA, ie -DUSE_CUDA=true
-cmake ../ -DBUILD_EXAMPLES=true -DBUILD_WITH_CUDA=true
+sudo cmake ../ -DBUILD_EXAMPLES=true -DBUILD_WITH_CUDA=true
 # The library will be installed in /usr/local/lib, header files in /usr/local/include
 # The demos, tutorials and tests will located in /usr/local/bin.
 echo "${green}Building librealsense, headers, tools and demos${reset}"

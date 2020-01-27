@@ -13,10 +13,9 @@ Adding correct path to cuda compiler cmake
 
 ## Install process
 
-- run buildPatchedKernel.sh
+- run buildPatchedKernel.sh -p <install_path>
 - run installBuiltImage.sh
-- run patchCmakeFiles.sh
-- run installLibrealsense.sh
+- run as sudo installLibrealsense.sh -p <install_path>
  
 # ----------------------------Original---------
 # buildLibrealsense2TX2
