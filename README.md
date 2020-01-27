@@ -1,5 +1,5 @@
 # Modification
-Installation succesfull with NVIDIA Jetson TX2 4GB. Not tested running example programs for realsense
+Installation succesfull with NVIDIA Jetson TX2 4GB. !Reading the camera not tested yet.
 
 ## Installation process
 To allow more space purged desktop from ubuntu. Installation need to be done from get go. If buildLibrealsense has been completed, new image installed to boot and installLibrealsense done succesfully there is no more space left. If needed to install again, you most probably need to reflash the jetson and start from beginning.
