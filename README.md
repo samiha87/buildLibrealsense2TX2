@@ -1,6 +1,5 @@
 # Modification
 Installation succesfull with NVIDIA Jetson TX2 4GB. Tested with JetPack 4.3 version running realsense-viewer.
-- TODO adding CMAKE patcher, cmake build configuration need to be modified to support Jetpack 4.3 CUDA release.
 
 ## Installation process
 To allow more space purged desktop from ubuntu. Installation need to be done from get go. If buildLibrealsense has been completed, new image installed to boot and installLibrealsense done succesfully there is no more space left. If needed to install again, you most probably need to reflash the jetson and start from beginning.
@@ -10,6 +9,8 @@ Adding correct path to cuda compiler cmake
 
 - SET(CMAKE_CUDA_COMPILER_ENV_VAR /usr/local/cuda-10.0/bin/nvcc)
 - SET(CMAKE_CUDA_COMPILER /usr/local/cuda-10.0/bin/nvcc)
+
+If cuda version not correct, edit the cmake config at /patches/cmake/cuda_config.cmake
 
 ## Install process
 
