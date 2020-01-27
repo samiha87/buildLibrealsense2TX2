@@ -11,6 +11,13 @@ Adding correct path to cuda compiler cmake
 - SET(CMAKE_CUDA_COMPILER_ENV_VAR /usr/local/cuda-10.0/bin)
 - SET(CMAKE_CUDA_COMPILER /usr/local/cuda-10.0/bin)
 
+## Install process
+
+- run buildPatchedKernel.sh
+- run installBuiltImage.sh
+- run patchCmakeFiles.sh
+- run installLibrealsense.sh
+ 
 # ----------------------------Original---------
 # buildLibrealsense2TX2
 Build librealsense 2.0 library on the NVIDIA Jetson TX2 Developer Kit. Intel RealSense D400 series cameras.

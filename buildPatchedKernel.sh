@@ -110,6 +110,11 @@ fi
 
 # Is librealsense on the device?
 echo "Clone librealsense to $BUILD_PATH"
+# Check if build_path exist
+if [ ! -d $BUILD_PATH ]; then
+	mkdir "$BUILD_PATH"
+fi
+
 if [ ! -d "$BUILD_PATH/librealsense" ] ; then
    echo "The librealsense repository directory is not available"
    read -p "Would you like to git clone librealsense? (y/n) " answer
