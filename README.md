@@ -8,8 +8,8 @@ To allow more space purged desktop from ubuntu. Installation need to be done fro
 Installing librealsense required modifying CMAKE files for cuda compiler. Script version has old cuda version and Jetpack 4.3 has 10.0.
 Adding correct path to cuda compiler cmake 
 
-- SET(CMAKE_CUDA_COMPILER_ENV_VAR /usr/local/cuda-10.0/bin)
-- SET(CMAKE_CUDA_COMPILER /usr/local/cuda-10.0/bin)
+- SET(CMAKE_CUDA_COMPILER_ENV_VAR /usr/local/cuda-10.0/bin/nvcc)
+- SET(CMAKE_CUDA_COMPILER /usr/local/cuda-10.0/bin/nvcc)
 
 ## Install process
 
