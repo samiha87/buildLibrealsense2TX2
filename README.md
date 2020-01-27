@@ -1,5 +1,5 @@
 # Modification
-Installation succesfull with NVIDIA Jetson TX2 4GB. !Reading the camera not tested yet.
+Installation succesfull with NVIDIA Jetson TX2 4GB. Tested with JetPack 4.3 version running realsense-viewer.
 - TODO adding CMAKE patcher, cmake build configuration need to be modified to support Jetpack 4.3 CUDA release.
 
 ## Installation process
