@@ -1,5 +1,6 @@
 # Modification
 Installed and test with NVIDIA Jetson TX2 4GB. Tested with JetPack 4.3 version running realsense-viewer.
+Due to limited size of 4GB attached SD-Card and used for downloading and building the files.
 
 ## Installation process
 To allow more space purged desktop from ubuntu. Installation need to be done from get go. If buildLibrealsense has been completed, new image installed to boot and installLibrealsense done succesfully there is no more space left. If needed to install again, you most probably need to reflash the jetson and start from beginning.
